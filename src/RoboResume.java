@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -38,9 +39,35 @@ public class RoboResume {
 			System.out.println("Please enter the major you had");
 			String major=user.nextLine();
 			
-			System.out.println("Please enter the year you graduated");
-			int year=user.nextInt();
-			user.nextLine();
+			int year=0;
+			boolean check3=true;
+			while(check3==true)
+			{System.out.println("Please enter the year you graduated");
+			
+				try
+				{
+					
+					String year1=user.nextLine();
+					System.out.println("");
+					year=Integer.parseInt(year1);
+					
+					if(year<=LocalDate.now().getYear()&&year>=1900)
+					{
+							check3=false;
+					}
+					else
+					{
+						System.out.println("That is an invalid input. Please try again.");
+					}
+					
+				}
+				catch(NumberFormatException e)
+				{
+					System.out.println("That is an invalid input. Please try again.");
+				}
+				
+			}
+			
 			
 			Schooling s=new Schooling(school,year,degree, major, id);
 			edu.addSchooling(s);
